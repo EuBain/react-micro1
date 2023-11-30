@@ -30,7 +30,8 @@ export const Context = createContext(root)
 const app = 
   <React.StrictMode>
     {/* <HashRouter> */}
-    <BrowserRouter basename='/react-micro1'>
+    {/* <BrowserRouter basename='/react-micro1'> */}
+    <BrowserRouter >
       <ReduxProvider store={store} >
         <Context.Provider value = {root}>
           <App />
