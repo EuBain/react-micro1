@@ -33,8 +33,8 @@ export const useBusOnChangePath:() => void = () => {
 
   useEffect(() => {
     // console.log('ReactMicro执行')
-    window.$wujie.bus.$on("ReactMicroChange", changeRoute);
-    window.$wujie.bus.$emit('ReactMicroMount', 'ReactMicro', true)
+    window.$wujie?.bus.$on("ReactMicroChange", changeRoute);
+    window.$wujie?.bus.$emit('ReactMicroMount', 'ReactMicro', true)
     // return () => {
     //   console.log(111)
     //   window.$wujie.bus.$emit('ReactMicroMount', 'ReactMicro',false)}

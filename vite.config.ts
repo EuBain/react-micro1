@@ -9,7 +9,7 @@ import {  presetAttributify, presetUno, presetIcons } from 'unocss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base:'https://www.tayrsi.cn/react-micro1/',
+  base:'/react-micro1/',
   //envDir:'env', //环境变量加载文件路径
   envPrefix:['BASE_','MR_'], //vite自定义环境变量默认识别VITE_前缀，在此修改，不能为''
   plugins: [
