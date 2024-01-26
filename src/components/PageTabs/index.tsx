@@ -38,16 +38,17 @@ const PageTabs = () => {
   }, [location.pathname]);
   
   useEffect(() => {
+    console.log(window.$wujie?.props?.addNavList)
     window.$wujie?.props?.addNavList?.(routeModel);
   },[window.$wujie?.props?.addNavList]);
 
   const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
   const [items, setItems] = useState(defaultPanes);
   const newTabIndex = useRef(0);
-  const onChange = (key: string) => {
-    // setActiveKey(key);
-    navigate(key);
-  };
+  // const onChange = (key: string) => {
+  //   // setActiveKey(key);
+  //   navigate(key);
+  // };
   const add = () => {
     const newActiveKey = `newTab${newTabIndex.current++}`;
     setItems([
