@@ -15,7 +15,7 @@ const MyLayout = () => {
       
     return (
         <>
-            <Layout u-h='100vh' u-min-w='xl' >
+            <Layout u-h='inherit' u-min-w='xl' >
                 {/* <MyHeader />
                 <Layout> */}
                     {/* <Navigate  background={colorBgContainer} /> */}

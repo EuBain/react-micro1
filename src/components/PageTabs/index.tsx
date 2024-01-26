@@ -33,14 +33,11 @@ const PageTabs = () => {
   const navigate = useNavigate();
   const element = useOutlet();
   const { keepElement, addElement, keepalive } = useContext(ContextPageTab);
-  useLayoutEffect(() => {
+  useEffect(() => {
     addElement(location.pathname, element);
   }, [location.pathname]);
-
-  // const props = window.$wujie.props
-  // console.log(location)
+  
   useEffect(() => {
-    // console.log(1,window.$wujie?.props?.addNavList)
     window.$wujie?.props?.addNavList?.(routeModel);
   },[window.$wujie?.props?.addNavList]);
 
