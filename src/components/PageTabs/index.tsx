@@ -78,7 +78,7 @@ const PageTabs = () => {
       remove(targetKey);
     }
   };
-  useBusOnChangePath();
+
   return (
     <>
       <div hidden={!keepalive[location.pathname]}>

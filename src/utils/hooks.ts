@@ -18,10 +18,8 @@ export const useBusOnChangePath:() => void = () => {
     // setTimeout(()=>{
       if (state.current.join("/") === params.join("/")) {
         if (params.length) {
-          // console.log(2);
           return;
         }
-        // console.log(3);
         navigate("/home",{replace:true});
       } else {
         state.current = params;
