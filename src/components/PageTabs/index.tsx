@@ -14,8 +14,8 @@ import { useLocation, useNavigate, useOutlet } from "react-router-dom";
 // import { keepalive } from "@/routers";
 import ContextPageTab from "@/context/ContextPageTabs";
 // import { useLink } from "@/utils/hooks";
-import { useBusOnChangePath } from "@/utils/hooks"
-import { routeModel } from "@/routers/routeModel";
+import { useBusOnChangePath } from "@/utils/hooks";
+
 
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
@@ -36,19 +36,19 @@ const PageTabs = () => {
   useEffect(() => {
     addElement(location.pathname, element);
   }, [location.pathname]);
-  
-  useEffect(() => {
-    console.log(window.$wujie?.props?.addNavList)
-    window.$wujie?.props?.addNavList?.(routeModel);
-  },[window.$wujie?.props?.addNavList]);
+
+  // useEffect(() => {
+  //   console.log(window.$wujie?.props?.addNavList);
+
+  // }, [window.$wujie?.props?.addNavList]);
 
   const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
   const [items, setItems] = useState(defaultPanes);
   const newTabIndex = useRef(0);
-  // const onChange = (key: string) => {
-  //   // setActiveKey(key);
-  //   navigate(key);
-  // };
+  const onChange = (key: string) => {
+    // setActiveKey(key);
+    navigate(key);
+  };
   const add = () => {
     const newActiveKey = `newTab${newTabIndex.current++}`;
     setItems([
@@ -78,25 +78,28 @@ const PageTabs = () => {
       remove(targetKey);
     }
   };
-  useBusOnChangePath()
+  useBusOnChangePath();
   return (
     <>
       <div hidden={!keepalive[location.pathname]}>
-        {/* <Tabs
-          hideAdd
-          onChange={onChange}
-          activeKey={location.pathname}
-          type="editable-card"
-          onEdit={onEdit}
-          items={Object.entries(keepElement).map(([pathname, element]: any) => {
-              return { 
-                  label: `${keepalive[pathname]}`, 
-                  // children: element, 
-                  key: pathname 
+        {!window.__POWERED_BY_WUJIE__ && (
+          <Tabs
+            hideAdd
+            onChange={onChange}
+            activeKey={location.pathname}
+            type="editable-card"
+            onEdit={onEdit}
+            items={Object.entries(keepElement).map(
+              ([pathname, element]: any) => {
+                return {
+                  label: `${keepalive[pathname]}`,
+                  // children: element,
+                  key: pathname,
+                };
               }
-          })}
-          > 
-        </Tabs> */}
+            )}
+          ></Tabs>
+        )}
       </div>
       {Object.entries(keepElement).map(([pathname, element]: any) => (
         <div key={pathname} hidden={location.pathname !== pathname}>
