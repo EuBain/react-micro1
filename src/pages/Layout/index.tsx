@@ -12,6 +12,7 @@ const MyLayout = () => {
   } = theme.useToken();
 
   //   useBusOnChangePath()
+  console.log(window.__POWERED_BY_WUJIE__);
   if (window.__POWERED_BY_WUJIE__) {
     window.$wujie?.props?.addNavList?.(routeModel);
   }
