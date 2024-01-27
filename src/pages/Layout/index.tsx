@@ -11,7 +11,7 @@ const MyLayout = () => {
     token: { colorBgContainer },
   } = theme.useToken();
 
-    useBusOnChangePath()
+  useBusOnChangePath()
   console.log(window.__POWERED_BY_WUJIE__);
   if (window.__POWERED_BY_WUJIE__ && window.$wujie?.props?.addNavList) {
     window.$wujie?.props?.addNavList?.(routeModel);
