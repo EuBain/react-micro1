@@ -14,8 +14,8 @@ const MyLayout = () => {
   useBusOnChangePath();
   // console.log(window.$wujie?.props?.addNavList);
   useEffect(() => {
-    console.log(window.$wujie?.props?.addNavList);
-    console.log(window.__POWERED_BY_WUJIE__);
+    // console.log(window.$wujie?.props?.addNavList);
+    // console.log(window.__POWERED_BY_WUJIE__);
     if (window.__POWERED_BY_WUJIE__ && window.$wujie?.props?.addNavList) {
       window.$wujie?.props?.addNavList?.(routeModel);
     }
