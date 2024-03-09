@@ -16,7 +16,7 @@ import ContextPageTab from "@/context/ContextPageTabs";
 // import { useLink } from "@/utils/hooks";
 import { useBusOnChangePath } from "@/utils/hooks";
 
-
+import './index.scss'
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
 const defaultPanes = new Array(2).fill(null).map((_, index) => {
@@ -32,7 +32,8 @@ const PageTabs = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const element = useOutlet();
-  const { keepElement, addElement, keepalive } = useContext(ContextPageTab);
+  const { keepElement, addElement, keepalive, removeElement } =
+    useContext(ContextPageTab);
   useEffect(() => {
     addElement(location.pathname, element);
   }, [location.pathname]);
@@ -42,33 +43,39 @@ const PageTabs = () => {
 
   // }, [window.$wujie?.props?.addNavList]);
 
-  const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
-  const [items, setItems] = useState(defaultPanes);
-  const newTabIndex = useRef(0);
+  // const [activeKey, setActiveKey] = useState(defaultPanes[0].key);
+  // const [items, setItems] = useState(defaultPanes);
+  // const newTabIndex = useRef(0);
+
   const onChange = (key: string) => {
     // setActiveKey(key);
     navigate(key);
   };
-  const add = () => {
-    const newActiveKey = `newTab${newTabIndex.current++}`;
-    setItems([
-      ...items,
-      { label: "New Tab", children: "New Tab Pane", key: newActiveKey },
-    ]);
-    setActiveKey(newActiveKey);
-  };
+  // const add = () => {
+  //   const newActiveKey = `newTab${newTabIndex.current++}`;
+  //   setItems([
+  //     ...items,
+  //     { label: "New Tab", children: "New Tab Pane", key: newActiveKey },
+  //   ]);
+  //   setActiveKey(newActiveKey);
+  // };
 
   const remove = (targetKey: TargetKey) => {
-    const targetIndex = items.findIndex((pane) => pane.key === targetKey);
-    const newPanes = items.filter((pane) => pane.key !== targetKey);
-    if (newPanes.length && targetKey === activeKey) {
-      const { key } =
-        newPanes[
-          targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
-        ];
-      setActiveKey(key);
+    const path = removeElement(targetKey);
+    if (targetKey === location.pathname) {
+      navigate(path);
     }
-    setItems(newPanes);
+
+    // const targetIndex = items.findIndex((pane) => pane.key === targetKey);
+    // const newPanes = items.filter((pane) => pane.key !== targetKey);
+    // if (newPanes.length && targetKey === activeKey) {
+    //   const { key } =
+    //     newPanes[
+    //       targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
+    //     ];
+    //   setActiveKey(key);
+    // }
+    // setItems(newPanes);
   };
 
   const onEdit = (targetKey: TargetKey, action: "add" | "remove") => {
@@ -82,12 +89,15 @@ const PageTabs = () => {
   return (
     <>
       <div hidden={!keepalive[location.pathname]}>
+        {/* 非无界子项目模式，展示tab页 */}
         {!window.__POWERED_BY_WUJIE__ && (
           <Tabs
             hideAdd
             onChange={onChange}
             activeKey={location.pathname}
-            type="editable-card"
+            type={
+              Object.keys(keepElement).length > 1 ? "editable-card" : "card"
+            }
             onEdit={onEdit}
             items={Object.entries(keepElement).map(
               ([pathname, element]: any) => {
@@ -102,7 +112,11 @@ const PageTabs = () => {
         )}
       </div>
       {Object.entries(keepElement).map(([pathname, element]: any) => (
-        <div key={pathname} hidden={location.pathname !== pathname}>
+        <div
+          key={pathname}
+          hidden={location.pathname !== pathname}
+          className='pageTabBox'
+        >
           <Suspense fallback={<h2>🌀 Loading...</h2>}>{element}</Suspense>
         </div>
       ))}

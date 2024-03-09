@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 
 // 组件库
 import App from "./App.tsx";
+import zhCN from "antd/locale/zh_CN";
 // 工具库
 import { BrowserRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
@@ -13,6 +14,7 @@ import store from "@/redux/store";
 // 样式文件
 import "virtual:uno.css";
 import "./style.scss";
+import { ConfigProvider } from "antd";
 
 // console.log(' import.meta.env.MODE: ',  import.meta.env.MODE);
 // console.log(' import.meta.env.BASE_URL: ',  import.meta.env.BASE_URL);
@@ -31,11 +33,13 @@ root.render(
     {/* <HashRouter> */}
     <BrowserRouter basename="/react-micro1">
       {/* <BrowserRouter > */}
-      <ReduxProvider store={store}>
-        <Context.Provider value={root}>
-          <App />
-        </Context.Provider>
-      </ReduxProvider>
+      <ConfigProvider locale={zhCN}>
+        <ReduxProvider store={store}>
+          <Context.Provider value={root}>
+            <App />
+          </Context.Provider>
+        </ReduxProvider>
+      </ConfigProvider>
     </BrowserRouter>
     {/* </HashRouter> */}
   </React.StrictMode>

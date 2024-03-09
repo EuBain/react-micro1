@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useLayoutEffect } from "react";
+import React, { Suspense, useEffect, useLayoutEffect } from "react";
 import { routes } from "@/routers";
 import { useRoutes } from "react-router-dom";
 import { useAppSelector, useBusOnChangePath } from "@/utils/hooks";
@@ -19,7 +19,6 @@ function App() {
   });
   const pageTabs = usePageTabs();
   // console.log({ routes });
-
 
   return (
     <Suspense fallback={<h2>Loading... 加载中... </h2>}>

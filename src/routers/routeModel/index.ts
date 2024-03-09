@@ -1,6 +1,9 @@
-import { model1, model1Route } from "./model1";
+import { account, account } from "./account";
+import { model1 } from "./model1";
 import { model2 } from "./model2";
 import { model3 } from "./model3";
+import { roommanagement } from "./roommanagement";
+import { roomstatus } from "./roomstatus";
 
 export const routeModel = {
   subApp: "ReactMicro",
@@ -8,6 +11,9 @@ export const routeModel = {
     model1,
     model2,
     model3,
+    account,
+    roomstatus,
+    roommanagement,
     // {
     //   model: "事件7",
     //   modelConfig: [
