@@ -120,11 +120,14 @@ const EditTable = ({
         const editable = isEditing(record);
         return editable ? (
           <span>
-            <a onClick={() => save(record.key)} style={{ marginRight: 8 }}>
+            <div onClick={() => save(record.key)} style={{ marginRight: 8 }}>
               保存
-            </a>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>取消</a>
+            </div>
+            <Popconfirm
+              title="Sure to cancel?"
+              onConfirm={cancel}
+            >
+              <div>取消</div>
             </Popconfirm>
           </span>
         ) : (

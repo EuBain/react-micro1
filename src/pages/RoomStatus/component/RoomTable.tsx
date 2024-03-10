@@ -207,7 +207,7 @@ export const RoomTable = ({
   return (
     <>
       <Divider orientation="left" plain>
-        {RoomType[roomType]}
+        {roomType}
       </Divider>
       <Table
         columns={columns}

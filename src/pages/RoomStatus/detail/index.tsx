@@ -1,7 +1,10 @@
+import { API } from "@/services/api";
 import { RoomTable } from "../component/RoomTable";
 import _ from "lodash";
+import { useEffect, useState } from "react";
 
 export const RoomStatusDetail = ({ type }) => {
+  const [roomList, setRoomList] = useState([]);
   const data1 = [
     {
       type: 1,
@@ -41,28 +44,37 @@ export const RoomStatusDetail = ({ type }) => {
     },
   ];
 
+  const getRoomList = async (data) => {
+    const res = await API.roomStatusService.getRoomStatusRoomType(data);
+    setRoomList(res)
+  };
+
+  useEffect(() => {
+    getRoomList(type);
+  }, []);
+
   const TYPE = [1, 2];
 
-  const roomList = [
-    {
-      roomType: 1,
-      roomNumber: ["110", "111"],
-    },
-    {
-      roomType: 2,
-      roomNumber: ["210", "211"],
-    },
-    {
-      roomType: 3,
-      roomNumber: ["310", "311"],
-    },
-  ];
+  // const roomList = [
+  //   {
+  //     roomType: 1,
+  //     roomNumber: ["110", "111"],
+  //   },
+  //   {
+  //     roomType: 2,
+  //     roomNumber: ["210", "211"],
+  //   },
+  //   {
+  //     roomType: 3,
+  //     roomNumber: ["310", "311"],
+  //   },
+  // ];
 
   const handleData = (data) => {
     return roomList.map((item) => {
       return {
         roomType: item.roomType,
-        data: item.roomNumber.map((l, m) => {
+        data: item.roomList.map((l, m) => {
           const roomlist = data.filter((j) => j.roomNumber === l);
           if (roomlist.length >= 1) {
             return {
@@ -95,7 +107,7 @@ export const RoomStatusDetail = ({ type }) => {
 
   return (
     <>
-      <div >
+      <div>
         {data.map((i, index) => (
           <RoomTable {...i} key={index}></RoomTable>
         ))}
