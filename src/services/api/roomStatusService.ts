@@ -1,4 +1,4 @@
-import { GET } from "../request/request";
+import { GET } from "../request";
 
 export const roomStatusService = {
   getRoomStatusType: () => GET("/api/roommanagement/roomtype"),

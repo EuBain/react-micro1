@@ -1,17 +1,6 @@
 import { useEffect, useState } from "react";
-import { useReactive } from "ahooks";
-import {
-  Badge,
-  Button,
-  Divider,
-  Dropdown,
-  Space,
-  Table,
-  TableColumnsType,
-  Tag,
-} from "antd";
-import ExpandedTable from "./ExpandedTable";
-import { text } from "stream/consumers";
+
+import { Button, Divider, Space, Table, TableColumnsType, Tag } from "antd";
 import EditTable from "./EditTable";
 
 interface DataType {
@@ -30,11 +19,11 @@ interface DataType {
 //   Ctrip: string;
 // }
 
-const RoomType: Record<number, string> = {
-  1: "单人间",
-  2: "双人间",
-  3: "三人间",
-};
+// const RoomType: Record<number, string> = {
+//   1: "单人间",
+//   2: "双人间",
+//   3: "三人间",
+// };
 export const RoomTable = ({
   roomType,
   data,
@@ -45,7 +34,6 @@ export const RoomTable = ({
   const [_data, setData] = useState(data);
   const [expandedRowKeys, setExpandedRowKeys] = useState([]);
   useEffect(() => {
-    // console.log("sss");
   }, [_data]);
 
   const onExpand = (record, event) => {

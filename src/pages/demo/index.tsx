@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "@/main";
 // import './index.scss'
 import "./index.scss";
-import { GET, POST } from "@/services/api/request";
+import { GET, POST } from "@/services/request";
 const aa = 1 || 3;
 const Demo = () => {
   const element = useContext(Context);
@@ -25,10 +25,10 @@ const Demo = () => {
   };
   const getId = () => {
     GET("/api/user/dde/");
-  }
+  };
   const postId = () => {
-    POST("/api/user/id",{name:1222,ddd:2});
-  }
+    POST("/api/user/id", { name: 1222, ddd: 2 });
+  };
 
   // &&赋值
   return (
