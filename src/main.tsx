@@ -19,11 +19,11 @@ import { ConfigProvider } from "antd";
 // console.log(' import.meta.env.MODE: ',  import.meta.env.MODE);
 // console.log(' import.meta.env.BASE_URL: ',  import.meta.env.BASE_URL);
 // console.log(' import.meta.env.PROD: ',  import.meta.env.);
-// console.log(' import.meta.env.DEV: ',  import.meta.env.DEV);
+console.log(" import.meta.env.DEV: ", import.meta.env);
 // console.log(' import.meta.env.SSR: ',  import.meta.env.SSR);
 // console.log(' import.meta.env: ',  import.meta.env);
 // console.log(' import.meta.env: ',  import.meta.env);
-// console.log(' process.env: ',  process.env);
+console.log(" process.env: ", process.env.NODE_ENV);
 
 const node = document.getElementById("root");
 const root = ReactDOM.createRoot(node!);

@@ -38,7 +38,7 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^20.8.10
+    specifier: ^20.8.4
     version: 20.8.10
   '@types/react':
     specifier: ^18.2.15
