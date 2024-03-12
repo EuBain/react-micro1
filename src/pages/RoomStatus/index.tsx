@@ -10,7 +10,7 @@ const RoomStatus = () => {
   };
 
   const getRoomStatusType = async () => {
-    const res = await API.roomStatusService.getRoomStatusType();
+    const res = await API.roomStatusService.getRoomStatusType() ?? [];
     setData(res);
   };
   
