@@ -21,7 +21,7 @@ import { ConfigProvider } from "antd";
 // console.log(' import.meta.env.PROD: ',  import.meta.env.PROD);
 // console.log(' import.meta.env.DEV: ',  import.meta.env.DEV);
 // console.log(' import.meta.env.SSR: ',  import.meta.env.SSR);
-// console.log(' import.meta.env: ',  import.meta.env);
+console.log(' import.meta.env: ',  import.meta.env);
 // console.log(' process.env: ',  process.env);
 
 const node = document.getElementById("root");

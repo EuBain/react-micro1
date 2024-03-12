@@ -13,7 +13,7 @@ const RoomStatus = () => {
     const res = await API.roomStatusService.getRoomStatusType();
     setData(res);
   };
-
+  
   useEffect(() => {
     getRoomStatusType();
   }, []);
