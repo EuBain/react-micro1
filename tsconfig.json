@@ -4,14 +4,15 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "skipLibCheck": true,
     //基路径
     "baseUrl": ".",
     //配置路径
     "paths": {
       "@/*": ["src/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@components/*": ["src/components/*"]
     },
 
     /* Bundler mode */

@@ -1,6 +1,3 @@
-// import { changeKeepElement } from "@/redux/slice/pageTabSlice";
-// import { useAppDispatch, useAppSelector } from "@/utils/hooks";
-import { Tabs } from "antd";
 import {
   Suspense,
   useContext,
@@ -10,13 +7,19 @@ import {
   useState,
   useCallback,
 } from "react";
+// import { changeKeepElement } from "@/redux/slice/pageTabSlice";
+// import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { Tabs,Button } from "antd";
+import Loading from "@/components/Loading";
+
 import { useLocation, useNavigate, useOutlet } from "react-router-dom";
 // import { keepalive } from "@/routers";
 import ContextPageTab from "@/context/ContextPageTabs";
 // import { useLink } from "@/utils/hooks";
 import { useBusOnChangePath } from "@/utils/hooks";
 
-import './index.scss'
+import "./index.scss";
+import { relative } from "path";
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
 
 const defaultPanes = new Array(2).fill(null).map((_, index) => {
@@ -32,6 +35,7 @@ const PageTabs = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const element = useOutlet();
+
   const { keepElement, addElement, keepalive, removeElement } =
     useContext(ContextPageTab);
   useEffect(() => {
@@ -88,7 +92,7 @@ const PageTabs = () => {
 
   return (
     <>
-      <div hidden={!keepalive[location.pathname]}>
+      <div hidden={!keepalive[location.pathname]} >
         {/* 非无界子项目模式，展示tab页 */}
         {!window.__POWERED_BY_WUJIE__ && (
           <Tabs
@@ -115,9 +119,9 @@ const PageTabs = () => {
         <div
           key={pathname}
           hidden={location.pathname !== pathname}
-          className='pageTabBox'
+          className="pageTabBox"
         >
-          <Suspense fallback={<h2>🌀 Loading...</h2>}>{element}</Suspense>
+          <Suspense fallback={<Loading />}>{element}</Suspense>
         </div>
       ))}
       {!keepalive[location.pathname] && element}

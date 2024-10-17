@@ -1,0 +1,34 @@
+.contain {
+  .head {
+    background-color: red;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .content {
+    display: flex;
+    .nav {
+      display: block;
+      flex: none;
+      width: 200px;
+      background-color: green;
+      height: auto;
+      position: relative;
+      .navbox {
+        position: sticky;
+        top: 64px;
+        overflow-y: auto;
+        max-height: calc(100vh - 64px);
+      }
+    }
+    .box {
+      flex: 1 1 auto;
+      background-color: aqua;
+    }
+  }
+  .footer {
+    height: 20px;
+    background-color: black;
+  }
+}
