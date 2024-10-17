@@ -3,7 +3,7 @@ import { createContext, useMemo } from "react";
 import { useRef, useState } from "react";
 
 export const usePageTabs = () => {
-  const [keepElement, setKeepElement] = useState<Record<string, any>>({});
+  const [keepElement, setKeepElement] = useState<Record<string, any>>({'/home':null});
   const [keepalive, setKeepalive] = useState<Record<string, string>>(list);
 
   const addElement = (path: string, element: any) => {
@@ -29,7 +29,6 @@ export const usePageTabs = () => {
         ];
       return Object.assign({}, l);
     });
-
     return path;
   };
 

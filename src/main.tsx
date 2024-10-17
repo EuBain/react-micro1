@@ -6,13 +6,13 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import zhCN from "antd/locale/zh_CN";
 // 工具库
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "@/redux/store";
 // import WujieReact from "wujie-react";
 // 类型导入
 // 样式文件
-import "virtual:uno.css";
+import 'virtual:uno.css'
 import "./style.scss";
 import { ConfigProvider } from "antd";
 
@@ -34,7 +34,6 @@ root.render(
   <React.StrictMode>
     {/* <HashRouter> */}
     <BrowserRouter basename="/react-micro1">
-      {/* <BrowserRouter > */}
       <ConfigProvider locale={zhCN}>
         <ReduxProvider store={store}>
           <Context.Provider value={root}>

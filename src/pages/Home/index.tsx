@@ -2,40 +2,37 @@
 // import { useEffect, useRef, useState } from 'react';
 // 组件库
 // 工具库
-import { useAppDispatch } from '@/utils/hooks';
-import { changeWebTitle, changeWebTitleScrollStatus } from '@/redux/slice/stateSlice';
-import { Link, Outlet, useHref, useLocation, useNavigate } from 'react-router-dom';
-
-import MyLayout from '../Layout';
-import { useEffect } from 'react';
-import { Spin } from 'antd';
 
 // 类型导入
 
 // 样式文件
-
-
+import "./index.scss";
 
 const Home = () => {
-  // const dispatch = useAppDispatch()
-
-
-
-  // const location = useLocation()
-  // console.log('location',location,'navigation')
-  // const navigate = useNavigate();
-  
   return (
     <>
-   <div onClick={()=> window.$wujie?.props?.jump('ReactMicro2','home')}> 1111</div>
-   {/* <Spin tip="Loading" size="large" style={{position:'a', bottom:'0'}} >
-                            <div className="content" />
-                        </Spin> */}
-    {/* <MyLayout>
-    </MyLayout> */}
+      <div className="contain">
+        <div className="head"></div>
+        <div className="content">
+          <div className="nav">
+            <div className="navbox">
+              <div style={{ height: 500, backgroundColor: "#dfe433" }}></div>
+              <div style={{ height: 500, backgroundColor: "#d4233" }}></div>
+              <div style={{ height: 500, backgroundColor: "#d45643" }}></div>
+              <div style={{ height: 500, backgroundColor: "#dda333" }}></div>
+            </div>
+          </div>
+          <div className="box">
+            <div style={{ height: 1000, backgroundColor: "#ffe433" }}></div>
+            <div style={{ height: 1000, backgroundColor: "#cc4233" }}></div>
+            <div style={{ height: 1000, backgroundColor: "#af5643" }}></div>
+            <div style={{ height: 1000, backgroundColor: "#aaa333" }}></div>
+          </div>
+        </div>
+        <div className="footer"></div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
-
+export default Home;

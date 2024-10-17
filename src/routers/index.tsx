@@ -1,16 +1,20 @@
 /* eslint-disable */
-import { LayoutRoutes } from "./Layout";
+
 import { Navigate } from "react-router-dom";
+import { UserRoutes } from "./User";
+import { LayoutRoutes } from "./Layout";
+import AuthRoute from "@components/AuthRoute";
 import { component } from "./routesMap";
 import { LazyExoticComponent } from "react";
 
 export interface RoutesType {
   name: string;
-  path: string;
+  path?: string;
   element?: string;
   children?: RoutesType[];
   redirect?: string;
   keepalive?: boolean;
+  auth?: boolean;
 }
 // 处理路由
 export function handlerRoutes(routes: RoutesType[]): any {
@@ -21,14 +25,18 @@ export function handlerRoutes(routes: RoutesType[]): any {
         () => JSX.Element
       >;
     }
+    const _path = index.path?.replace(/\/{2,}/, "/");
     return {
       name: index.name,
-      path: index.path.replace(/\/{2,}/, "/"),
+      path: _path,
       element: index.redirect ? (
         <Navigate to={`/${index.redirect}`} replace={true} />
-      ) : Components ? (
-        <Components />
-      ) : null,
+      ) : (
+        Components && <AuthRoute {...index} children={<Components />} />
+      ),
+      // ) : Components ? (
+      //   <AuthRoute {...index} children={<Components />} />
+      // ) : null,
       children: index.children ? handlerRoutes(index.children) : null,
     };
   });
@@ -40,8 +48,11 @@ export function flatRoutes(routes: RoutesType[]) {
   flatChildrenRoutes(routes);
   function flatChildrenRoutes(routes: RoutesType[], parentPath?: string) {
     routes.forEach((l: RoutesType) => {
-      const thisPath = l.redirect ? l.redirect : l.path;
-      const path = ((parentPath || "") + thisPath).replace(/\/{2,}/, "/");
+      // const thisPath = l.redirect ? l.redirect : l.path;
+      const thisPath = l.path ?? "";
+      const path = /^\//g.test(thisPath)
+        ? thisPath
+        : `${parentPath ?? ""}/${thisPath}`.replace(/\/{2,}/, "/");
       if (l.keepalive) {
         // console.log(path)
         object[path] = l.name;
@@ -55,14 +66,17 @@ export function flatRoutes(routes: RoutesType[]) {
 }
 
 const route = [
+  ...UserRoutes,
   ...LayoutRoutes,
   // ...DemoRoutes,
 ];
+// console.log(route)
 
 export const routes = handlerRoutes(route);
+console.log(routes);
 // export const routes = [
 //      ...ErrorPageRoutes,
 // ]
 
 export const keepalive = flatRoutes(route);
-// console.log({keepalive})
+console.log({ keepalive });

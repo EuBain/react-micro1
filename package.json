@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.1",
+    "@dnd-kit/core": "^6.1.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/lodash": "^4.14.202",
     "ahooks": "^3.7.10",
     "antd": "^5.10.0",
     "axios": "^1.5.1",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.10",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,21 +26,23 @@
     "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
-    "@types/node": "^20.8.4",
+    "@iconify-json/streamline-emojis": "^1.1.8",
+    "@types/node": "^20.8.10",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "@unocss/preset-attributify": "^0.56.5",
-    "@unocss/preset-icons": "^0.56.5",
-    "@unocss/preset-uno": "^0.56.5",
+    "@unocss/preset-attributify": "^0.61.5",
+    "@unocss/preset-icons": "^0.61.5",
+    "@unocss/preset-uno": "^0.61.5",
+    "@unocss/transformer-attributify-jsx": "^0.61.5",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "sass": "^1.69.5",
     "typescript": "^5.0.2",
-    "unocss": "^0.56.5",
+    "unocss": "^0.61.5",
     "vite": "^4.4.5"
   }
 }

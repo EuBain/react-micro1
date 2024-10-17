@@ -4,7 +4,7 @@ import Navigate from "./component/Navigate";
 import Container from "./component/Container";
 import React, { Suspense, useEffect } from "react";
 import { useBusOnChangePath } from "@/utils/hooks";
-import { routeModel } from "@/routers/routeModel";
+import { routeModel } from "@/routers/Layout/routeModel";
 
 const MyLayout = () => {
   const {
@@ -28,10 +28,10 @@ const MyLayout = () => {
           <Container background={colorBgContainer} />
         </Layout>
       ) : (
-        <Layout u-h="inherit" u-min-w="xl">
-          <Navigate background={colorBgContainer} />
+        <Layout u-h="inherit" u-min-w="xl" >
+          <MyHeader />
           <Layout>
-            <MyHeader />
+            <Navigate background={colorBgContainer} />
             <Layout style={{ padding: "0 24px 24px" }}>
               <Container background={colorBgContainer} />
             </Layout>
