@@ -1,10 +1,12 @@
-import React, { Suspense, useEffect, useLayoutEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { routes } from "@/routers";
-import { useRoutes } from "react-router-dom";
+import { useNavigate, useRoutes } from "react-router-dom";
 import { useAppSelector, useBusOnChangePath } from "@/utils/hooks";
 import { scrollPageTitle } from "@/utils/common";
 import ContextPageTab, { usePageTabs } from "@/context/ContextPageTabs";
-import { routeModel } from "./routers/routeModel";
+// import { routeModel } from "./routers/Layout/routeModel";
+import Loading from "@components/Loading";
+import { useLocalStorageState } from "ahooks";
 
 function App() {
   const router: React.ReactElement<
@@ -19,13 +21,21 @@ function App() {
   });
   const pageTabs = usePageTabs();
   // console.log({ routes });
+  const [token] = useLocalStorageState("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
-    <Suspense fallback={<h2>Loading... 加载中... </h2>}>
+    <Suspense fallback={<Loading />}>
       <ContextPageTab.Provider value={pageTabs}>
         {router}
       </ContextPageTab.Provider>
     </Suspense>
+    // <Loading />
   );
 }
 

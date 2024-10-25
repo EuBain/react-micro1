@@ -1,31 +1,36 @@
 import ContextPageTab from "@/context/ContextPageTabs";
-import { Menu, MenuProps } from "antd";
+import { Button, Menu, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
-import React, { startTransition, useContext, useEffect } from "react";
+import React, {useState, startTransition, useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LayoutRoutes } from "@/routers/Layout";
+import { handleChildrenRoutes } from "@/utils/common";
+import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 
 interface Proptype {
   background: string;
 }
 
-const items2: MenuProps["items"] = LayoutRoutes[0].children?.map(
-  (icon: any) => {
-    if (icon.redirect) return;
-    return {
-      key: `/${icon.path}`,
-      label: ` ${icon.name}`,
-      children: icon.children?.map((_) => {
-        if (_.redirect) return;
-        const subKey = _.path;
-        return {
-          key: `/${subKey}`,
-          label: `${_.name}`,
-        };
-      }),
-    };
-  }
-);
+const items2: MenuProps["items"] = handleChildrenRoutes(
+  LayoutRoutes[0].children as any
+) as MenuProps["items"];
+// ?.map(
+//   (icon: any) => {
+//     if (icon.redirect) return;
+//     return {
+//       key: `${icon.path}`,
+//       label: ` ${icon.name}`,
+//       children: icon.children?.map((_) => {
+//         if (_.redirect) return;
+//         const subKey = _.path;
+//         return {
+//           key: `${subKey}`,
+//           label: `${_.name}`,
+//         };
+//       }),
+//     };
+//   }
+// );
 
 // items2.push({
 //       key: '/tayrsi/212',
@@ -37,7 +42,11 @@ const Navigate = React.memo((props: Proptype) => {
   const navigate = useNavigate();
   const location = useLocation();
   // let { keepElement, keepalive } = useContext(ContextPageTab);
-
+  const [collapsed, setCollapsed] = useState(false);
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+  
   // useEffect(() => {
   //   // console.log(items2)
   //   // console.log(keepElement)
@@ -47,8 +56,12 @@ const Navigate = React.memo((props: Proptype) => {
   const { background } = props;
   return (
     <>
-      <Sider width={200} style={{ background }}>
+      <Sider width={200} style={{ background }}  collapsed={collapsed}>
+         <div onClick={toggleCollapsed}  style={{position:'absolute',right:'-25px',zIndex:100,padding:5, borderRadius:'0 100px 100px 0'}}>
+           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+         </div>
         <Menu
+          // inlineCollapsed={collapsed}
           mode="inline"
           selectedKeys={[location.pathname]}
           // defaultOpenKeys={['/']}
