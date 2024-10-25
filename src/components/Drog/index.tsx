@@ -20,10 +20,10 @@ const DragBox = () => {
     return (
       
         <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <div u-flex style={{margin:'auto',position:'absolute',inset:0, width:'900px',height:400}}>
-        <Drop id='1' color='pink'>
+        <div u-flex  style={{margin:'auto',position:'absolute',inset:0, width:'900px',height:400}}>
+        {/* <Drop id='1' color='pink'>
           {box1.map((id) => (
-            <Drag key={id} id={id} >
+            <Drag  key={id} id={id} >
               {id}
             </Drag>
           ))}
@@ -34,7 +34,8 @@ const DragBox = () => {
               {id}
             </Drag>
           ))}
-        </Drop>
+        </Drop> */}
+        <div className="bg-amber-4 w-xl h-xl"> </div>
         </div>
   
         {/* <DragOverlay>
